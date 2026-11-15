@@ -15,8 +15,13 @@
 
 html {
   scroll-behavior: smooth;
-  /* якоря не прячутся под липкой шапкой */
-  scroll-padding-top: 5rem;
+}
+
+/* Якоря не прячутся под липкой шапкой. Именно scroll-margin у целей, а не scroll-padding
+   на <html>: с scroll-padding роутер Next считает верх страницы «невидимым» и после
+   смены языка сам прокручивает страницу (уезжала к футеру). */
+[id] {
+  scroll-margin-top: 5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

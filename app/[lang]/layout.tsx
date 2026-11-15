@@ -53,7 +53,12 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   if (!hasLocale(lang)) notFound();
 
   return (
-    <html lang={lang} className={`${display.variable} ${body.variable} antialiased`}>
+    // data-scroll-behavior: даёт Next выключать плавный скролл на время перехода между страницами
+    <html
+      lang={lang}
+      data-scroll-behavior="smooth"
+      className={`${display.variable} ${body.variable} antialiased`}
+    >
       <body className="min-h-dvh bg-cream font-body text-chocolate">{children}</body>
     </html>
   );
