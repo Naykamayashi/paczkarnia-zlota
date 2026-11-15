@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Manrope, Unbounded } from "next/font/google";
-import { hasLocale, locales, ogLocales } from "@/i18n/config";
+import { defaultLocale, hasLocale, locales, ogLocales } from "@/i18n/config";
 import { getDictionary } from "@/i18n";
+import { siteUrl } from "@/data/site";
 import "../globals.css";
 
 const display = Unbounded({
@@ -25,13 +26,12 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
   if (!hasLocale(lang)) return {};
   const { meta } = getDictionary(lang);
   return {
-    // shortcut: адрес-заглушка, при деплое задать NEXT_PUBLIC_SITE_URL
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+    metadataBase: new URL(siteUrl),
     title: meta.title,
     description: meta.description,
     alternates: {
       canonical: `/${lang}`,
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
+      languages: { ...Object.fromEntries(locales.map((l) => [l, `/${l}`])), "x-default": `/${defaultLocale}` },
     },
     openGraph: {
       title: meta.title,
