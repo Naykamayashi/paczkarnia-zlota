@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Menu from "@/components/Menu";
 import About from "@/components/About";
+import Reviews from "@/components/Reviews";
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
@@ -18,6 +19,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <Hero t={dict.hero} />
         <Menu lang={lang} t={dict.menu} />
         <About t={dict.about} />
+        <Reviews t={dict.reviews} />
       </main>
     </>
   );
