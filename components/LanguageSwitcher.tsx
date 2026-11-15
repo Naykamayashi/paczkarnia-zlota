@@ -18,17 +18,18 @@ function currentSection() {
   return found;
 }
 
-// Куда вернуть прокрутку после смены языка. Живёт в модуле — переход «мягкий», JS не перезагружается.
-let pending: { id: string; offset: number } | null = null;
+// Куда вернуть прокрутку после смены языка: { id секции, сколько в неё прокручено }.
+const KEY = "lang-switch-scroll";
 
 export default function LanguageSwitcher({ lang, label }: { lang: Locale; label: string }) {
   const router = useRouter();
 
   // Новая языковая версия смонтировалась → до отрисовки ставим ту же секцию с тем же отступом.
   useLayoutEffect(() => {
-    if (!pending) return;
-    const { id, offset } = pending;
-    pending = null;
+    const saved = sessionStorage.getItem(KEY);
+    if (!saved) return;
+    sessionStorage.removeItem(KEY);
+    const { id, offset } = JSON.parse(saved) as { id: string; offset: number };
     const el = [...document.querySelectorAll(`[id="${id}"]`)].find(visible);
     if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY + offset, behavior: "instant" });
   }, [lang]);
@@ -40,8 +41,11 @@ export default function LanguageSwitcher({ lang, label }: { lang: Locale; label:
     if (l === lang) return;
     const section = currentSection();
     // В hero — новый язык просто наверху. Иначе запоминаем секцию и насколько в неё прокручено.
-    pending = section ? { id: section.id, offset: -section.getBoundingClientRect().top } : null;
-    if (!section) window.scrollTo({ top: 0, behavior: "instant" });
+    if (section) {
+      sessionStorage.setItem(KEY, JSON.stringify({ id: section.id, offset: -section.getBoundingClientRect().top }));
+    } else {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
     router.push(`/${l}`, { scroll: false });
   };
 
