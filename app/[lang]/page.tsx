@@ -3,6 +3,7 @@ import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import Menu from "@/components/Menu";
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
@@ -14,7 +15,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       <Header lang={lang} nav={dict.nav} />
       <main id="top">
         <Hero t={dict.hero} />
-        <div className="h-[200vh] bg-dough" />
+        <Menu lang={lang} t={dict.menu} />
       </main>
     </>
   );
