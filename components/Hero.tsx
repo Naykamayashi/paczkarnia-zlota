@@ -10,13 +10,13 @@ export default function Hero({ t }: { t: Dictionary["hero"] }) {
       <div aria-hidden="true" className="pointer-events-none absolute -right-32 -top-24 h-96 w-96 rounded-full bg-glaze/40 blur-3xl" />
       <div aria-hidden="true" className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-dough blur-3xl" />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 pb-16 pt-10 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:gap-12 lg:pb-24 lg:pt-20">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 pb-16 pt-10 sm:px-6 lg:grid-cols-[1.35fr_1fr] lg:gap-10 lg:pb-20 lg:pt-14">
         <div>
           <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-1.5 text-sm font-semibold text-caramel-dark shadow-sm ring-1 ring-chocolate/5">
             <span className="h-2 w-2 rounded-full bg-glaze-deep" aria-hidden="true" />
             {t.eyebrow}
           </p>
-          <h1 className="font-display text-[2.4rem] font-extrabold leading-[1.05] tracking-tight text-balance sm:text-6xl xl:text-[4.2rem]">
+          <h1 className="font-display text-[2.4rem] font-extrabold leading-[1.08] tracking-tight text-balance sm:text-5xl lg:text-[2.75rem] xl:text-5xl">
             {t.title}
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-chocolate/80 sm:text-xl">{t.subtitle}</p>
