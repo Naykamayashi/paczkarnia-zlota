@@ -39,6 +39,12 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
       locale: ogLocales[lang],
       type: "website",
     },
+    // картинки og:image и twitter:image Next берёт из opengraph-image.tsx / twitter-image.tsx
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.description,
+    },
   };
 }
 

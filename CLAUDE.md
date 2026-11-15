@@ -25,6 +25,8 @@
 ```
 app/[lang]/layout.tsx   корневой layout: <html lang>, шрифты, метаданные по языку
 app/[lang]/page.tsx     собирает секции по порядку
+app/[lang]/opengraph-image.tsx  OG-картинка 1200×630 для соцсетей (кодом через next/og, своя на каждый язык,
+                        шрифты — .woff из @fontsource); twitter-image.tsx реэкспортирует её же
 app/globals.css         палитра (cream, dough, caramel, chocolate, glaze, glaze-deep), анимации
 components/             по файлу на секцию: Header, Hero, Menu, DonutCard, About, Reviews, Contact, Footer
                         + LanguageSwitcher, Reveal (анимация появления, только улучшение поверх видимого контента)
