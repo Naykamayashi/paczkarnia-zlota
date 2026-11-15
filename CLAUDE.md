@@ -15,6 +15,12 @@
 - `npm run build` — продакшен-сборка (заодно проверка типов: пропущенный перевод = ошибка)
 - `npm run lint` — ESLint
 
+## Деплой
+- Vercel, проект `paczkarnia-zlota` (команда Koshakis): https://paczkarnia-zlota.vercel.app
+- Код: https://github.com/Naykamayashi/paczkarnia-zlota
+- Env `NEXT_PUBLIC_SITE_URL` (Production) = адрес сайта; подставляется при сборке, после смены — передеплой.
+- Ручной деплой: `npx vercel deploy --prod`
+
 ## Структура
 ```
 app/[lang]/layout.tsx   корневой layout: <html lang>, шрифты, метаданные по языку
