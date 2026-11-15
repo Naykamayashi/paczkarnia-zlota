@@ -24,3 +24,22 @@ html {
     scroll-behavior: auto;
   }
 }
+
+/* Reveal: класс reveal-pending ставит только JS (см. components/Reveal.tsx).
+   Анимируем содержимое секции (.reveal > section > *), фон секции остаётся на месте. */
+.reveal > * > * {
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
+}
+.reveal-pending > * > * {
+  opacity: 0;
+  transform: translateY(2rem);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal > * > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none;
+  }
+}
